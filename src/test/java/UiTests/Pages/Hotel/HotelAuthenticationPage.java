@@ -19,7 +19,8 @@ public class HotelAuthenticationPage extends BasePage {
     WebElement submitButtonCreate;
 
     public void createEmailAndClickButton() {
-        this.sendKeysToWebElement(emailInputCreate, "test" + this.getRandomNumber() + "@test.com");
+        context.email = "test" + this.getRandomNumber() + "@test.com";
+        this.sendKeysToWebElement(emailInputCreate, context.email);
         this.clickWebElement(submitButtonCreate);
 
 
