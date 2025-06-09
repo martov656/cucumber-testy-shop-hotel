@@ -17,6 +17,12 @@ public class HotelHomePage extends BasePage {
     @FindBy(xpath = "//span[text()='Sign in']")
     WebElement signInLink;
 
+    @FindBy (id = "user_info_acc")
+    WebElement UserDropDownHover;
+
+    @FindBy (xpath = "//a[text()='Logout']")
+    WebElement LogoutOption;
+
 
 
 
@@ -31,4 +37,18 @@ public class HotelHomePage extends BasePage {
         this.clickWebElement(this.signInLink);
     }
 
+
+    public void logoutUser() {
+        this.clickWebElement(UserDropDownHover);
+        this.clickWebElement(LogoutOption);
+    }
+
+    public void logoinUser() {
+        this.clickWebElement(UserDropDownHover);
+    }
+
 }
+
+
+
+
