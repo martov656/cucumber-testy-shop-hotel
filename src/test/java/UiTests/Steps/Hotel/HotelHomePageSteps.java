@@ -2,6 +2,7 @@ package UiTests.Steps.Hotel;
 
 import UiTests.Steps.TestContext;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 
 public class HotelHomePageSteps {
 
@@ -19,6 +20,11 @@ public class HotelHomePageSteps {
     }
 
     // ******************** When section ***********
+
+    @When("The user clicks Sign in button")
+    public void theUserClicksSignInButton(){
+        context.pm.getHotelHomePage().clickSignIn();
+    }
 
 
     // ******************** Then section ***********
