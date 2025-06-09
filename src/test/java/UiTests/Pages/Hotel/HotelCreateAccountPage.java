@@ -29,8 +29,13 @@ public class HotelCreateAccountPage extends BasePage {
         this.sendKeysToWebElement(lastnameInput, "Novak");
         this.sendKeysToWebElement(passwdInput, "Heslo12345");
         this.clickWebElement(accountButton);
+    }
 
-
+    public void createAccount(String firstName, String surname, String passwd) {
+        this.sendKeysToWebElement(firstnameInput, firstName);
+        this.sendKeysToWebElement(lastnameInput, surname);
+        this.sendKeysToWebElement(passwdInput, passwd);
+        this.clickWebElement(accountButton);
     }
 
 
