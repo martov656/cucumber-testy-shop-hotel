@@ -26,6 +26,20 @@ public class HotelHomePageSteps {
         context.pm.getHotelHomePage().clickSignIn();
     }
 
+    @When("The user logged out the hotel system")
+    public void theUserLoggedOutTheHotelSystem(){
+        context.pm.getHotelHomePage().logoutUser();
+    }
+
+    @When("The user logged in the hotel system")
+    public void theUserLoggedInTheHotelSystem(){
+        context.pm.getHotelHomePage().clickSignIn();
+        context.pm.getHotelAuthenticationPage().userLogin();
+    }
+
+
+
+
 
     // ******************** Then section ***********
 
