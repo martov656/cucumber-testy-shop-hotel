@@ -17,8 +17,14 @@ public class HotelAccountPageSteps {
     // ******************** When section ***********
 
     @When("The user fills in the registration form and press register")
-                                        public void theUserFillsInTheRegistrationFormAndPressRegister(){
+    public void theUserFillsInTheRegistrationFormAndPressRegister() {
         context.pm.getHotelCreateAccountPage().createAccount();
+    }
+
+
+    @When("The user fills in first name {string} and surname {string} with password {string}")
+    public void theUserFillsInFirstNameRegexAndSurnameRegexWithPasswordRegex(String firsName, String surname, String passwd) {
+        context.pm.getHotelCreateAccountPage().createAccount(firsName, surname, passwd);
     }
 
     // ******************** Then section ***********
