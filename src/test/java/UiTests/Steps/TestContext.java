@@ -10,4 +10,6 @@ public class TestContext {
     public WebDriver driver;
     public PageManager pm;
     public Properties configProperties;
+
+    public String email;
 }
