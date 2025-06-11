@@ -14,11 +14,15 @@ public class HotelAuthPageSteps {
 
     // ******************** Given section ***********
 
+    @Given("The user entered his email and password")
+    public void theUserEnteredHisEmailAndPassword() {
+        context.pm.getHotelAuthenticationPage().login();
+    }
 
     // ******************** When section ***********
 
     @When("The user fills in email and selects Create an account")
-    public void theUserFillsInEmailAndSelectsCreateAnAccount(){
+    public void theUserFillsInEmailAndSelectsCreateAnAccount() {
         context.pm.getHotelAuthenticationPage().createEmailAndClickButton();
     }
 

@@ -19,6 +19,11 @@ public class HotelAccProfilePageSteps {
         context.pm.getHotelAccProfilePage().addMyFirstAddress();
     }
 
+    @Given("The user went to main hotel page")
+    public void theUserWentToMainHotelPage() {
+        context.pm.getHotelAccProfilePage().goHomePage();
+    }
+
     // ******************** When section ***********
 
 
