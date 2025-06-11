@@ -13,7 +13,7 @@ public class PageManager {
     private HotelAccProfilePage hotelAccProfilePage;
     private HotelNewAddressesPage hotelNewAddressesPage;
     private HotelAddressesPage hotelAddressesPage;
-
+    private HotelResultsPage hotelResultsPage;
 
     public PageManager(TestContext context) {
         this.context = context;
@@ -46,4 +46,9 @@ public class PageManager {
     public HotelAddressesPage getHotelAddressesPage() {
         return (hotelAddressesPage == null) ? new HotelAddressesPage(context) : hotelAddressesPage;
     }
+
+    public HotelResultsPage getHotelResultsPage() {
+        return (hotelResultsPage == null) ? new HotelResultsPage(context) : hotelResultsPage;
+    }
+
 }
