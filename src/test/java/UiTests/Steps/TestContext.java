@@ -12,4 +12,5 @@ public class TestContext {
     public Properties configProperties;
 
     public String email;
+    public String aliasName;
 }

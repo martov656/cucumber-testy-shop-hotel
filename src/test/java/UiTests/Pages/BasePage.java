@@ -57,4 +57,10 @@ public class BasePage {
         return r;
     }
 
+    protected int getRandomNumber(int number) {
+        Random rand = new Random();
+        int r = rand.nextInt(number);
+        return r;
+    }
+
 }

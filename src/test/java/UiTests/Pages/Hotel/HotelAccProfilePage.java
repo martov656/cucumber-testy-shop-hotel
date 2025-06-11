@@ -14,10 +14,16 @@ public class HotelAccProfilePage extends BasePage {
         PageFactory.initElements(context.driver, this);
     }
 
+    // *********************** Elements *************************************
+
     @FindBy(xpath = "//p[contains(.,'Your account has been created.')]")
     WebElement validateLabel;
 
+    @FindBy(xpath = "//span[contains(.,'Add my first address')]")
+    WebElement addLinkMyAddress;
 
+
+    // *********************** Methods *************************************
 
     public void validateAccountCraated() {
         try {
@@ -25,7 +31,10 @@ public class HotelAccProfilePage extends BasePage {
         } catch (Exception e) {
             Assertions.fail("Account has not been created.");
         }
+    }
 
+    public void addMyFirstAddress() {
+        this.clickWebElement(addLinkMyAddress);
     }
 
 

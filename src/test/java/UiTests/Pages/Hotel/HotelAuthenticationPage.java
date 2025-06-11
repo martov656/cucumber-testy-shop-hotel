@@ -12,14 +12,13 @@ public class HotelAuthenticationPage extends BasePage {
         PageFactory.initElements(context.driver, this);
     }
 
+    // *********************** Elements *************************************
+
     @FindBy(id = "email_create")
     WebElement emailInputCreate;
 
     @FindBy(id = "SubmitCreate")
     WebElement submitButtonCreate;
-
-
-
 
     @FindBy(id = "email")
     WebElement emailInputLogin;
@@ -31,9 +30,7 @@ public class HotelAuthenticationPage extends BasePage {
     WebElement submitLoginButton;
 
 
-
-
-
+    // *********************** Methods *************************************
 
     public void createEmailAndClickButton() {
         context.email = "test" + this.getRandomNumber() + "@test.com";

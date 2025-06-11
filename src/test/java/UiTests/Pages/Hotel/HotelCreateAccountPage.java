@@ -12,6 +12,8 @@ public class HotelCreateAccountPage extends BasePage {
         PageFactory.initElements(context.driver, this);
     }
 
+    // *********************** Elements *************************************
+
     @FindBy(id = "customer_firstname")
     WebElement firstnameInput;
 
@@ -23,6 +25,8 @@ public class HotelCreateAccountPage extends BasePage {
 
     @FindBy(id = "submitAccount")
     WebElement accountButton;
+
+    // *********************** Methods *************************************
 
     public void createAccount() {
         this.sendKeysToWebElement(firstnameInput, "Jan");
