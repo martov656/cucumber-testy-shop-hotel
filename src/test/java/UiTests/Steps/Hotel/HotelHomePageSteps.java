@@ -42,6 +42,21 @@ public class HotelHomePageSteps {
         context.pm.getHotelAuthenticationPage().userLogin();
     }
 
+    @When("The user enters hotel location {string} and hotel name {string}")
+    public void theUserEntersHotelLocationRegexAndHotelNameRegex(String hotelLocation, String hotelName){
+        context.pm.getHotelHomePage().enterHotelLocationAndName(hotelLocation, hotelName);
+    }
+
+    @When("The user enters checkIn and checkOut dates")
+    public void theUserEntersCheckinAndCheckoutDates(){
+        context.pm.getHotelHomePage().hotelCheckinCheckout();
+    }
+
+    @When ("The user clicks search for hotel")
+    public void theUserClicksSearchForHotel(){
+        context.pm.getHotelHomePage().searchHotelClick();
+    }
+
 
 
 

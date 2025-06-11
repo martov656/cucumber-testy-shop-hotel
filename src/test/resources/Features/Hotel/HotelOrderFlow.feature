@@ -6,9 +6,9 @@
       And The user clicked Sign in button
       And The user entered his email and password
       And The user went to main hotel page
-  #  When The user enters hotel location "Krakow" and hotel name "The Hotel Prime"
-  #    And The user enters checkIn and checkOut dates
-  #    And The user clicks search for hotel
+    When The user enters hotel location "Krakow" and hotel name "The Hotel Prime"
+     And The user enters checkIn and checkOut dates
+     And The user clicks search for hotel
   #  Then The user should see found hotel offers
 
   #@regression
