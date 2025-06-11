@@ -22,6 +22,8 @@ public class HotelAccProfilePage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'Add my first address')]")
     WebElement addLinkMyAddress;
 
+    @FindBy(xpath = "//a/span[contains(.,'Home')]")
+    WebElement buttonGoHome;
 
     // *********************** Methods *************************************
 
@@ -37,5 +39,8 @@ public class HotelAccProfilePage extends BasePage {
         this.clickWebElement(addLinkMyAddress);
     }
 
+    public void goHomePage() {
+        this.clickWebElement(buttonGoHome);
+    }
 
 }

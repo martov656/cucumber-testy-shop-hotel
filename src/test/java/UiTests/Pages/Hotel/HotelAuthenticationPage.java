@@ -5,6 +5,7 @@ import UiTests.Steps.TestContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HotelAuthenticationPage extends BasePage {
     public HotelAuthenticationPage(TestContext context) {
@@ -46,5 +47,9 @@ public class HotelAuthenticationPage extends BasePage {
        this.clickWebElement(submitLoginButton);
     }
 
-
+    public void login() {
+        this.sendKeysToWebElement(emailInputLogin, context.configProperties.getProperty("hotelEmailUser"));
+        this.sendKeysToWebElement(passwordInputLogin, context.configProperties.getProperty("hotelPasswdUser"));
+        this.clickWebElement(submitLoginButton);
+    }
 }
