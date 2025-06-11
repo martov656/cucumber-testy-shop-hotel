@@ -19,6 +19,11 @@ public class HotelHomePageSteps {
         context.pm.getHotelHomePage().loadHomePage();
     }
 
+    @Given("The user clicked Sign in button")
+    public void theUserClickedSignInButton(){
+        context.pm.getHotelHomePage().clickSignIn();
+    }
+
     // ******************** When section ***********
 
     @When("The user clicks Sign in button")
