@@ -1,9 +1,6 @@
 package UiTests.Pages;
 
-import UiTests.Pages.Hotel.HotelAccProfilePage;
-import UiTests.Pages.Hotel.HotelAuthenticationPage;
-import UiTests.Pages.Hotel.HotelCreateAccountPage;
-import UiTests.Pages.Hotel.HotelHomePage;
+import UiTests.Pages.Hotel.*;
 import UiTests.Steps.Hotel.HotelAccountPageSteps;
 import UiTests.Steps.TestContext;
 
@@ -14,6 +11,8 @@ public class PageManager {
     private HotelAuthenticationPage hotelAuthenticationPage;
     private HotelCreateAccountPage hotelCreateAccountPage;
     private HotelAccProfilePage hotelAccProfilePage;
+    private HotelNewAddressesPage hotelNewAddressesPage;
+    private HotelAddressesPage hotelAddressesPage;
 
 
     public PageManager(TestContext context) {
@@ -40,4 +39,11 @@ public class PageManager {
         return (hotelAccProfilePage == null) ? new HotelAccProfilePage(context) : hotelAccProfilePage;
     }
 
+    public HotelNewAddressesPage getHotelNewAddressesPage() {
+        return (hotelNewAddressesPage == null) ? new HotelNewAddressesPage(context) : hotelNewAddressesPage;
+    }
+
+    public HotelAddressesPage getHotelAddressesPage() {
+        return (hotelAddressesPage == null) ? new HotelAddressesPage(context) : hotelAddressesPage;
+    }
 }
