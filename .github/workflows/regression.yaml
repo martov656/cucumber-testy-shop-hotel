@@ -35,10 +35,9 @@ jobs:
           sudo chown -R testuser:testuser $GITHUB_WORKSPACE
 
       - name: Run Regression
-        run: |
-          sudo -u testuser
+        run: | 
           mvn clean test -Dcucumber.filter.tags="@regression"
-        shell: bash
+        shell: sudo -u testuser bash
 
       - name: Attach report
         if: always()
