@@ -23,14 +23,11 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipTests
 
-      - name: Kill orphaned Chrome processes
-        run: sudo pkill -f chrome || true
-
       - name: Run headless in Github
         run: |
           echo "in github" > runInGithub.txt  
-          ls -al
-        shell: bash
+#          ls -al
+#        shell: bash
 
       - name: Run Regression
         run: mvn clean test -Dcucumber.filter.tags="@regression"
