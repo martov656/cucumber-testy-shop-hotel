@@ -20,6 +20,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: link
+        run: ln -s /usr/bin/google-chrome-stable /usr/bin/google-chrome
+
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipTests
 
