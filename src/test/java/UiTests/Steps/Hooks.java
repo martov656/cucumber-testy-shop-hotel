@@ -31,14 +31,14 @@ public class Hooks {
         this.loadConfigFile();
         ChromeOptions options = new ChromeOptions();
         if (isRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
-            WebDriverManager.chromedriver().clearDriverCache().setup();
+            //WebDriverManager.chromedriver().clearDriverCache().setup();
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-gpu");
             // Generate UNIQUE temporary directory for user data
-            Path tempProfile = Files.createTempDirectory("chrome-profile-" + System.nanoTime());
-            options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath());
+            //Path tempProfile = Files.createTempDirectory("chrome-profile-" + System.nanoTime());
+            //options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath());
             context.driver = new ChromeDriver(options);
         } else {
             context.driver = new ChromeDriver();
