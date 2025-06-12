@@ -3,6 +3,7 @@ package UiTests.Steps;
 import UiTests.Pages.PageManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,6 +28,7 @@ public class Hooks {
         this.loadConfigFile();
         ChromeOptions options = new ChromeOptions();
         if (IsRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
+            WebDriverManager.chromedriver().clearDriverCache().setup();
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             context.driver = new ChromeDriver(options);

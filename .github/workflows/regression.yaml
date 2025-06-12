@@ -29,13 +29,8 @@ jobs:
           ls -al
         shell: bash
 
-      - name: Create restricted regular user
-        run: |
-          sudo useradd -m testuser
-          sudo chown -R testuser:testuser $GITHUB_WORKSPACE
-
       - name: Run Regression
-        run: sudo -u testuser mvn clean test -Dcucumber.filter.tags="@regression"
+        run: mvn clean test -Dcucumber.filter.tags="@regression"
 
       - name: Attach report
         if: always()
