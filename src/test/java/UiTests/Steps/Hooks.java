@@ -6,6 +6,7 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,17 +22,34 @@ public class Hooks {
     }
 
     @Before()
-    public void before(){
-      this.loadConfigFile();
-      context.driver = new ChromeDriver();
-      context.pm = new PageManager(context);
-      this.openOnSecondScreen_ForLecturerDemoOnly(context.driver);
+    public void before() {
+        this.loadConfigFile();
+        ChromeOptions options = new ChromeOptions();
+        if (IsRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
+            options.addArguments("--headless=new");
+            context.driver = new ChromeDriver(options);
+        } else {
+            context.driver = new ChromeDriver();
+        }
+        context.driver = new ChromeDriver();
+        context.pm = new PageManager(context);
+        this.openOnSecondScreen_ForLecturerDemoOnly(context.driver);
     }
 
     @After()
-    public void after(){
+    public void after() {
         waitBeforeClosing_ForLecturerDemoOnly();
         context.driver.quit();
+    }
+
+    private boolean IsRunningInGithub() {
+        boolean inGithub = false;
+        File file = new File(System.getProperty("user.dir") + File.separator + "runInGithub.txt");
+        if (file.exists()) {
+            context.configProperties.setProperty("isHeadless", "true");
+            inGithub = true;
+        }
+        return inGithub;
     }
 
     private void loadConfigFile() {
