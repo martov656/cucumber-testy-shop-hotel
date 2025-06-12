@@ -31,7 +31,7 @@ public class Hooks {
         this.loadConfigFile();
         ChromeOptions options = new ChromeOptions();
         if (isRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
-            WebDriverManager.chromedriver().browserVersion("137.0.7151.103").setup();
+            WebDriverManager.chromedriver().clearDriverCache().setup();
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
