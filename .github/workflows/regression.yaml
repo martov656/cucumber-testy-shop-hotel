@@ -30,7 +30,7 @@ jobs:
 #        shell: bash
 
       - name: Run Regression
-        run: mvn clean test -Dcucumber.filter.tags="@regression"
+        run: mvn clean test "-Dcucumber.filter.tags=@regression"
 
       - name: Attach report
         if: always()
