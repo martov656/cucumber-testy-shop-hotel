@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Properties;
 
 public class Hooks {
@@ -25,10 +26,18 @@ public class Hooks {
     public void before() {
         this.loadConfigFile();
         ChromeOptions options = new ChromeOptions();
+        String tmpProfile = "";
+        try {
+            tmpProfile = Files.createTempDirectory("chrome-profile").toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (IsRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
+            options.addArguments("--user-data-dir=" + tmpProfile);
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             context.driver = new ChromeDriver(options);
+
         } else {
             context.driver = new ChromeDriver();
         }
