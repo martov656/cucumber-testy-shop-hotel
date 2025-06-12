@@ -27,6 +27,8 @@ public class Hooks {
         ChromeOptions options = new ChromeOptions();
         if (IsRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
             options.addArguments("--headless=new");
+            options.addArguments("--disable-dev-shm-usage");  // Overcomes limited resource problems
+            options.addArguments("--no-sandbox");  // Required in Docker containers
             context.driver = new ChromeDriver(options);
         } else {
             context.driver = new ChromeDriver();
