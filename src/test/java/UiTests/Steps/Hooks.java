@@ -8,6 +8,8 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,12 +28,10 @@ public class Hooks {
     @Before()
     public void before() {
         this.loadConfigFile();
-        ChromeOptions options = new ChromeOptions();
+        FirefoxOptions optionsFirefox = new FirefoxOptions();
         if (IsRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
-            WebDriverManager.chromedriver().clearDriverCache().setup();
-            options.addArguments("--headless=new");
-            options.addArguments("--disable-gpu");
-            context.driver = new ChromeDriver(options);
+            optionsFirefox.addArguments("-headless");
+            context.driver = new FirefoxDriver(optionsFirefox);
         } else {
             context.driver = new ChromeDriver();
         }
