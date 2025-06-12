@@ -28,10 +28,13 @@ public class Hooks {
     @Before()
     public void before() {
         this.loadConfigFile();
-        FirefoxOptions optionsFirefox = new FirefoxOptions();
-        if (IsRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
-            optionsFirefox.addArguments("-headless");
-            context.driver = new FirefoxDriver(optionsFirefox);
+        ChromeOptions options = new ChromeOptions();
+        if (isRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true") || true) {
+            WebDriverManager.chromedriver().clearDriverCache().setup();
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--headless=new");
+            options.addArguments("--disable-gpu");
+            context.driver = new ChromeDriver(options);
         } else {
             context.driver = new ChromeDriver();
         }
@@ -46,7 +49,7 @@ public class Hooks {
         context.driver.quit();
     }
 
-    private boolean IsRunningInGithub() {
+    private boolean isRunningInGithub() {
         boolean inGithub = false;
         File file = new File(System.getProperty("user.dir") + File.separator + "runInGithub.txt");
         if (file.exists()) {
