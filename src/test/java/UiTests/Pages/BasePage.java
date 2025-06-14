@@ -1,14 +1,18 @@
 package UiTests.Pages;
 
 import UiTests.Steps.TestContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.apache.maven.surefire.shared.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
 import java.util.Random;
 
 public class BasePage {
@@ -61,6 +65,23 @@ public class BasePage {
         Random rand = new Random();
         int r = rand.nextInt(number);
         return r;
+    }
+
+
+    protected void takeScreenshot() {
+        String screenshotDir = System.getProperty("user.dir") + File.separator + "screenshots";
+        File directory = new File(screenshotDir);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        File scrFile = ((TakesScreenshot) context.driver).getScreenshotAs(OutputType.FILE);
+        // System.out.println(System.getProperty("user.dir") + File.separator + "screenshots" + File.separator + "screenshot_" + timeStamp + ".png");
+        try {
+            FileUtils.copyFile(scrFile, new File(screenshotDir + File.separator + "screenshot_" + timeStamp + ".png"), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
