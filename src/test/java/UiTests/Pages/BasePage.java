@@ -84,4 +84,13 @@ public class BasePage {
         }
     }
 
+    public void threadSleep(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ;
+    }
+
 }
