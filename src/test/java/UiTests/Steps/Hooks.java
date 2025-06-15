@@ -18,7 +18,6 @@ import java.util.Properties;
 
 public class Hooks {
     private final TestContext context;
-    private BasePage basePage;
 
     public Hooks(TestContext context) {
         this.context = context;
@@ -40,7 +39,6 @@ public class Hooks {
             context.driver = new ChromeDriver();
         }
         context.pm = new PageManager(context);
-        basePage = new BasePage(context);
         this.openOnSecondScreen_ForLecturerDemoOnly(context.driver);
     }
 
@@ -48,7 +46,7 @@ public class Hooks {
     public void after(Scenario scenario) {
         waitBeforeClosing_ForLecturerDemoOnly();
         if (scenario.isFailed()) {
-            basePage.takeScreenshot();
+            context.pm.getBasePage().takeScreenshot();
         }
         if (context.driver != null) {
             context.driver.quit();
