@@ -1,7 +1,6 @@
 package UiTests.Pages;
 
 import UiTests.Pages.Hotel.*;
-import UiTests.Steps.Hotel.HotelAccountPageSteps;
 import UiTests.Steps.TestContext;
 
 public class PageManager {
