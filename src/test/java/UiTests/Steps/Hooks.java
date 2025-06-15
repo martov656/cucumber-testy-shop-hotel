@@ -1,13 +1,11 @@
 package UiTests.Steps;
 
+import UiTests.Pages.BasePage;
 import UiTests.Pages.PageManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import org.apache.maven.surefire.shared.io.FileUtils;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,13 +14,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Properties;
 
 public class Hooks {
     private final TestContext context;
+    private BasePage basePage;
 
     public Hooks(TestContext context) {
         this.context = context;
@@ -37,13 +33,14 @@ public class Hooks {
             options.addArguments("--headless=new");
             options.addArguments("--disable-gpu");
             context.driver = new ChromeDriver(options);
-        } else if (context.configProperties.getProperty("isHeadless").equals("true")){
+        } else if (context.configProperties.getProperty("isHeadless").equals("true")) {
             options.addArguments("--headless=new");
             context.driver = new ChromeDriver(options);
         } else {
             context.driver = new ChromeDriver();
         }
         context.pm = new PageManager(context);
+        basePage = new BasePage(context);
         this.openOnSecondScreen_ForLecturerDemoOnly(context.driver);
     }
 
@@ -51,7 +48,7 @@ public class Hooks {
     public void after(Scenario scenario) {
         waitBeforeClosing_ForLecturerDemoOnly();
         if (scenario.isFailed()) {
-            this.takeScreenshot();
+            basePage.takeScreenshot();
         }
         if (context.driver != null) {
             context.driver.quit();
@@ -104,23 +101,6 @@ public class Hooks {
             inLecturerPc = true;
         }
         return inLecturerPc;
-    }
-
-
-    private void takeScreenshot() {
-        String screenshotDir = System.getProperty("user.dir") + File.separator + "screenshots";
-        File directory = new File(screenshotDir);
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-        File scrFile = ((TakesScreenshot) context.driver).getScreenshotAs(OutputType.FILE);
-        // System.out.println(System.getProperty("user.dir") + File.separator + "screenshots" + File.separator + "screenshot_" + timeStamp + ".png");
-        try {
-            FileUtils.copyFile(scrFile, new File(screenshotDir + File.separator + "screenshot_" + timeStamp + ".png"), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
 }

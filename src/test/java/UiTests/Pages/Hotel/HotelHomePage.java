@@ -83,7 +83,6 @@ public class HotelHomePage extends BasePage {
         this.sendKeysToWebElement(this.checkOutDate, dataOut);
     }
     public void searchHotelClick (){
-        this.takeScreenshot();
         clickWebElement(this.searchHotel);
     }
 }
