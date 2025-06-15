@@ -68,7 +68,7 @@ public class BasePage {
     }
 
 
-    protected void takeScreenshot() {
+    public void takeScreenshot() {
         String screenshotDir = System.getProperty("user.dir") + File.separator + "screenshots";
         File directory = new File(screenshotDir);
         if (!directory.exists()) {
