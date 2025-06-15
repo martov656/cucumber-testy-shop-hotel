@@ -17,12 +17,16 @@ public class HotelAddressesPageSteps {
 
     // ******************** When section ***********
 
+    @When("The user fills in the new address details into the form")
+    public void theUserFillsInNewAddressDetailsIntoForm(){
+        context.pm.getHotelAddressesPage().fillInAddressForm();
+    }
 
     // ******************** Then section ***********
 
     @Then("The user should see new address added to the list")
     public void theUserShouldSeeNewAddressAddedToTheList() {
-        context.pm.getHotelAddressesPage().validateAddressCraated();
+        context.pm.getHotelAddressesPage().validateAddressCreated();
     }
 
 }
