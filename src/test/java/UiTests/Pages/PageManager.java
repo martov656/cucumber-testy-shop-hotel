@@ -14,6 +14,8 @@ public class PageManager {
     private HotelNewAddressesPage hotelNewAddressesPage;
     private HotelAddressesPage hotelAddressesPage;
     private HotelResultsPage hotelResultsPage;
+    private HotelQuickOrderPage hotelQuickOrderPage;
+    private HotelOrderConfirmationPage hotelOrderConfirmationPage;
 
     public PageManager(TestContext context) {
         this.context = context;
@@ -49,6 +51,14 @@ public class PageManager {
 
     public HotelResultsPage getHotelResultsPage() {
         return (hotelResultsPage == null) ? new HotelResultsPage(context) : hotelResultsPage;
+    }
+
+    public HotelQuickOrderPage getHotelQuickOrderPage() {
+        return (hotelQuickOrderPage == null) ? new HotelQuickOrderPage(context) : hotelQuickOrderPage;
+    }
+
+    public HotelOrderConfirmationPage getHotelOrderConfirmationPage() {
+        return (hotelOrderConfirmationPage == null) ? new HotelOrderConfirmationPage(context) : hotelOrderConfirmationPage;
     }
 
 }

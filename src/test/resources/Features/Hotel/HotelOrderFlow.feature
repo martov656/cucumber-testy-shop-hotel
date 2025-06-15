@@ -20,10 +20,10 @@
     When The user enters hotel location "Krakow" and hotel name "The Hotel Prime"
       And The user enters checkIn and checkOut dates
       And The user clicks search for hotel
-  #    And The user selects book now the first hotel
-  #    And The user confirms the hotel selection in shopping cart
-  #    And The user opens the shopping cart
-  #    And The user confirms the business terms and conditions
-  #    And The user clicks payment by bank account
-  #    And The user confirms the order
-  #  Then The user should see the order confirmation title and alert displayed
+      And The user selects book now the first hotel
+      And The user confirms the hotel selection in shopping cart
+      And The user opens the shopping cart
+      And The user confirms the business terms and conditions
+      And The user clicks payment by bank account
+      And The user confirms the order
+    Then The user should see the order confirmation title and alert displayed
