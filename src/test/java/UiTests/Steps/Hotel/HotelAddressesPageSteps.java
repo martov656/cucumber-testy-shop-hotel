@@ -17,10 +17,6 @@ public class HotelAddressesPageSteps {
 
     // ******************** When section ***********
 
-    @When("The user fills in the new address details into the form")
-    public void theUserFillsInNewAddressDetailsIntoForm(){
-        context.pm.getHotelAddressesPage().fillInAddressForm();
-    }
 
     // ******************** Then section ***********
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HotelOrderConfirmationPage extends BasePage {
     public HotelOrderConfirmationPage(TestContext context) {
@@ -20,8 +21,13 @@ public class HotelOrderConfirmationPage extends BasePage {
     WebElement yourOrderIsComplete;
 
     public void validateOrderConfirmation() {
-        Assertions.assertTrue(this.orderConfirmation.isDisplayed(), "Order confirmation is not displayed");
-        Assertions.assertEquals("Your order on MyBooking is complete.", this.yourOrderIsComplete.getText(),"Order confirmation alert failed");
+        try{
+            wait.until(ExpectedConditions.visibilityOf(this.orderConfirmation));
+            Assertions.assertTrue(this.orderConfirmation.isDisplayed(), "Order confirmation is not displayed");
+            Assertions.assertEquals("Your order on MyBooking is complete.", this.yourOrderIsComplete.getText(),"Order confirmation alert failed");
+        }catch(Exception e){
+            Assertions.fail("Order confirmation is not displayed");
+        }
     }
 
 }
