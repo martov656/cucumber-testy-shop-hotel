@@ -84,11 +84,7 @@ public class Hooks {
 
     private void waitBeforeClosing_ForLecturerDemoOnly() {
         if (IsOnLecturerPc()) {
-            try {
-                Thread.sleep(5000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            context.pm.getBasePage().threadSleep(5000);
         }
     }
 
