@@ -11,7 +11,7 @@ public class LoginPageEShopSteps  {
     }
 
     @When("^The user fills in the registration form in eshop$")
-    public void theUserFillsInEmailAndSelectsCreteAnAccount() {
+    public void theUserFillsInEmailAndSelectsCreteAnAccount()  {
         context.pm.getEShopLoginPage().createNewConsumerDetails("Johny", "Test");
     }
 
