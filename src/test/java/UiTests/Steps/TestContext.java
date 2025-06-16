@@ -13,4 +13,10 @@ public class TestContext {
 
     public String email;
     public String aliasName;
+
+    public String orderReference;
+    public String orderTotal;
+    public String orderHistoryStatus;
+    public String orderHistoryPrice;
+
 }

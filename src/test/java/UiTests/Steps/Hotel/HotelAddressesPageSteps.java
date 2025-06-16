@@ -22,7 +22,7 @@ public class HotelAddressesPageSteps {
 
     @Then("The user should see new address added to the list")
     public void theUserShouldSeeNewAddressAddedToTheList() {
-        context.pm.getHotelAddressesPage().validateAddressCraated();
+        context.pm.getHotelAddressesPage().validateAddressCreated();
     }
 
 }

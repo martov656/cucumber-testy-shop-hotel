@@ -1,11 +1,14 @@
 package UiTests.Steps;
 
+import UiTests.Pages.BasePage;
 import UiTests.Pages.PageManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,17 +24,43 @@ public class Hooks {
     }
 
     @Before()
-    public void before(){
-      this.loadConfigFile();
-      context.driver = new ChromeDriver();
-      context.pm = new PageManager(context);
-      this.openOnSecondScreen_ForLecturerDemoOnly(context.driver);
+    public void before() throws IOException {
+        this.loadConfigFile();
+        ChromeOptions options = new ChromeOptions();
+        if (isRunningInGithub() || context.configProperties.getProperty("isHeadless").equals("true")) {
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--headless=new");
+            options.addArguments("--disable-gpu");
+            context.driver = new ChromeDriver(options);
+        } else if (context.configProperties.getProperty("isHeadless").equals("true")) {
+            options.addArguments("--headless=new");
+            context.driver = new ChromeDriver(options);
+        } else {
+            context.driver = new ChromeDriver();
+        }
+        context.pm = new PageManager(context);
+        this.openOnSecondScreen_ForLecturerDemoOnly(context.driver);
     }
 
     @After()
-    public void after(){
+    public void after(Scenario scenario) {
         waitBeforeClosing_ForLecturerDemoOnly();
-        context.driver.quit();
+        if (scenario.isFailed()) {
+            context.pm.getBasePage().takeScreenshot();
+        }
+        if (context.driver != null) {
+            context.driver.quit();
+        }
+    }
+
+    private boolean isRunningInGithub() {
+        boolean inGithub = false;
+        File file = new File(System.getProperty("user.dir") + File.separator + "runInGithub.txt");
+        if (file.exists()) {
+            context.configProperties.setProperty("isHeadless", "true");
+            inGithub = true;
+        }
+        return inGithub;
     }
 
     private void loadConfigFile() {
@@ -55,11 +84,7 @@ public class Hooks {
 
     private void waitBeforeClosing_ForLecturerDemoOnly() {
         if (IsOnLecturerPc()) {
-            try {
-                Thread.sleep(5000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            context.pm.getBasePage().threadSleep(5000);
         }
     }
 
