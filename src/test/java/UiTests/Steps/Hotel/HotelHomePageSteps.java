@@ -58,9 +58,6 @@ public class HotelHomePageSteps {
     }
 
 
-
-
-
     // ******************** Then section ***********
 
 }
