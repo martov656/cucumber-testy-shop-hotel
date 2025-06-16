@@ -3,7 +3,7 @@ package UiTests.Steps.EShop;
 import UiTests.Steps.TestContext;
 import io.cucumber.java.en.When;
 
-public class LoginPageEShopSteps {
+public class LoginPageEShopSteps  {
 
     private final TestContext context;
     public LoginPageEShopSteps(TestContext context) {
